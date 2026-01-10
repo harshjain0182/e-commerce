@@ -2,16 +2,16 @@ import { useEffect, useState } from "react"
 import { Navbar } from "../../components/Navbar"
 import { getAllProducts } from "../../API/product-API"
 import { ProductCard } from "../../components/Product-card";
-
 export const Home = () => {
 
     const [products, setProducts] = useState([]);
+
     useEffect(() => {
         (async () => {
             const data = await getAllProducts();
             setProducts(data);
         })();
-    }, [])
+    }, []);
     return (
         <>
             <Navbar />

@@ -1,4 +1,27 @@
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context"
+import { findProducts } from "../../utils-function";
+
 export const ProductCard = ({ product }) => {
+
+    const { state, cartDispatch } = useCart();
+
+    const navigate = useNavigate()
+
+    const isProductInCart = findProducts(state.cart, product.id);
+
+    const oncartClick = () => {
+        if (isProductInCart) {
+            navigate('/Cart');
+        }
+        else {
+            cartDispatch({
+                type: "add_to_cart",
+                payload: product
+            })
+        }
+
+    }
     return (
         <>
             <div className="card card-vertical d-flex direction-column relative truncate">
@@ -9,23 +32,23 @@ export const ProductCard = ({ product }) => {
                     <div className="card-title">{product.title}</div>
                     <div className="card-description">
                         <p className="card-price">
-                            {product.price}
+                            ${product.price}
                             <span className="discount">(30% OFF)</span>
                         </p>
                     </div>
                     <div className="cta-btn">
-                        <button className="button btn-primary btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin">
+                        <button onClick={oncartClick} className="button btn-primary btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin">
                             <span className="material-symbols-outlined">
-                                shopping_cart
+                                {isProductInCart ? "shopping_cart_checkout" : "shopping_cart"}
                             </span>
-                            Add To Cart
+                            {isProductInCart ? 'Go to Cart' : 'Add to Cart'}
                         </button>
 
                         <button className="button btn-primary btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin">
-                            <span className="material-symbols-outlined">
+                            <span className="material-symbols-outlined ">
                                 favorite
                             </span>
-                            Add To Cart
+                            Add to Wishlist
                         </button>
                     </div>
                 </div>
