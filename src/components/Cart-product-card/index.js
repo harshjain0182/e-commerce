@@ -1,18 +1,55 @@
-
+import { findProductsInWl } from "../../utils-function/findProductinWl";
 import { useCart } from "../../context";
+import { useNavigate } from "react-router-dom";
 
-export const CartProductCard = ({product}) => {
+export const CartProductCard = ({ product }) => {
 
-    const {cartDispatch} = useCart();
+  const navigate = useNavigate()
 
-    const onRemoveClick = (id) =>{
-        cartDispatch({
-            type: 'remove_from_cart',
-            payload: id
-        })
-    }
+  const { cartDispatch, state } = useCart();
+
+  const onRemoveClick = (id) => {
+    cartDispatch({
+      type: 'remove_from_cart',
+      payload: id
+    })
+  }
+
+  const onDecrementClick = (product) => {
+    product.qty === 1 ? (cartDispatch({
+      type: 'remove_from_cart',
+      payload: product.id
+    })) :
+      (cartDispatch({
+        type: 'decrement_click',
+        payload: product.id
+      }));
+  }
+
+  const onIncrementClick = (id) => {
+    cartDispatch({
+      type: 'increment_click',
+      payload: id
+    })
+  }
+
+  const isProductInWishlist = findProductsInWl(state.wishList, product.id);
+
+  const onMoveToWishlistClick = (product) => {
+    isProductInWishlist ? navigate('/wishlist') :
+    cartDispatch({
+      type: "add_to_wishlist",
+      payload: product
+    });
+
+    cartDispatch({
+      type: "remove_from_cart",
+      payload: product.id
+    });
+  };
 
   return (
+
     <div className="card-horizontal d-flex shadow m-6">
       <div className="card-hori-image-container relative">
         <img
@@ -39,24 +76,24 @@ export const CartProductCard = ({product}) => {
           <p className="q-title">Quantity:</p>
 
           <div className="count-container d-flex align-center gap">
-            <button className="count">-</button>
-            <span className="count-value">1</span>
-            <button className="count">+</button>
+            <button className="count" onClick={() => onDecrementClick(product)}>-</button>
+            <span className="count-value">{product.qty}</span>
+            <button className="count" onClick={() => onIncrementClick(product.id)}>+</button>
           </div>
         </div>
 
         <div className="flex gap-2">
-            <div className="cta-btn d-flex gap">
-          <button className=" button hori-btn btn-primary btn-icon d-flex align-center justify-center gap cursor btn-margin" onClick={() => onRemoveClick(product.id)}>
-            Remove From Cart
-          </button>
-        </div>
+          <div className="cta-btn d-flex gap">
+            <button className=" button hori-btn btn-primary btn-icon d-flex align-center justify-center gap cursor btn-margin" onClick={() => onRemoveClick(product.id)}>
+              Remove From Cart
+            </button>
+          </div>
 
-        <div className="cta-btn d-flex gap">
-          <button className=" button hori-btn btn-primary btn-icon d-flex align-center justify-center gap cursor btn-margin">
-            Move to Wishlist
-          </button>
-        </div>
+          <div className="cta-btn d-flex gap">
+            <button className=" button hori-btn btn-primary btn-icon d-flex align-center justify-center gap cursor btn-margin" onClick={() => onMoveToWishlistClick(product)}>
+              Move to Wishlist
+            </button>
+          </div>
         </div>
       </div>
     </div>

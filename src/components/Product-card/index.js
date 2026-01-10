@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context"
 import { findProducts } from "../../utils-function";
+import { findProductsInWl } from "../../utils-function/findProductinWl";
 
 export const ProductCard = ({ product }) => {
 
@@ -20,8 +21,22 @@ export const ProductCard = ({ product }) => {
                 payload: product
             })
         }
-
     }
+
+    const isProductInWishlist = findProductsInWl(state.wishList, product.id);
+    
+    const onAddToWishlistClick = () => {
+        if (isProductInWishlist) {
+            navigate('/wishlist');
+        }
+        else {
+            cartDispatch({
+                type: "add_to_wishlist",
+                payload: product
+            })
+        }
+    }
+
     return (
         <>
             <div className="card card-vertical d-flex direction-column relative truncate">
@@ -44,11 +59,11 @@ export const ProductCard = ({ product }) => {
                             {isProductInCart ? 'Go to Cart' : 'Add to Cart'}
                         </button>
 
-                        <button className="button btn-primary btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin">
+                        <button className="button btn-primary btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin" onClick={onAddToWishlistClick}>
                             <span className="material-symbols-outlined ">
                                 favorite
                             </span>
-                            Add to Wishlist
+                            {isProductInWishlist ? 'Go to Wishlist' : 'Add to Wishlist'}
                         </button>
                     </div>
                 </div>
