@@ -35,9 +35,9 @@ export const Home = () => {
             <Navbar />
             <main className="flex flex-wrap gap-8 justify-center pt-8 bg-purple-200">
                 <div className="flex gap-9 text-white">
-                    <span className="bg-purple-700 rounded-full p-2 cursor-pointer w-14 h-10 justify center" onClick={() => setProducts(allProducts)}>All</span>
+                    <span className="bg-purple-700 rounded-full p-2 cursor-pointer w-14 h-10 text-center" onClick={() => setProducts(allProducts)}>All</span>
                     {
-                        category.map(category => <span key={category.id} className="bg-purple-700 rounded-full p-2 cursor-pointer w-34 h-10 justify center" onClick={() => setProductsByCategory(category.name)}>{category.name}</span>)
+                        category.map(category => <span key={category.id} className="bg-purple-700 rounded-full p-2 cursor-pointer w-34 h-10 text-center" onClick={() => setProductsByCategory(category.name)}>{category.name}</span>)
                         
                     }
                 </div>
