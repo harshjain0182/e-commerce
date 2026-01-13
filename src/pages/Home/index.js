@@ -3,6 +3,7 @@ import { Navbar } from "../../components/Navbar";
 import { getAllProducts } from "../../API/product-API";
 import { ProductCard } from "../../components/Product-card";
 import { getAllCategories } from "../../API/getAllCategories";
+import { useLogin } from "../../context/Login-context";
 
 export const Home = () => {
     const [allProducts, setAllProducts] = useState([]);
@@ -64,8 +65,7 @@ export const Home = () => {
                 {/* Close icon */}
                 <div className="flex justify-end p-3">
                     <span
-                        className="material-symbols-outlined cursor-pointer
-            transition-transform duration-300 hover:rotate-90"
+                        className="material-symbols-outlined cursor-pointer transition-transform duration-300 hover:rotate-90"
                         onClick={() => setIsSidebarOpen(false)}
                     >
                         close
@@ -108,7 +108,7 @@ export const Home = () => {
                 {/* Menu icon */}
                 <div
                     className={`
-                        pl-4 pt-4
+                        pl-4 
                         transition-all duration-300
                         ${isSidebarOpen ? "opacity-0 invisible pointer-events-none" : "opacity-100 visible"}
                     `}
