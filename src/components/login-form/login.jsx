@@ -6,7 +6,6 @@ export const Login = () => {
   const { loginDispatch, email, password } = useLogin();
 
   const navigate = useNavigate();
-  let d = "";
 
   const onEmailChange = (e) => {
     loginDispatch({
@@ -25,15 +24,11 @@ export const Login = () => {
   const onFormSubmit = async (e) => {
     e.preventDefault();
     const data = await userLogin(email, password);
-    d = data;
     loginDispatch({
       type: "Token",
       payload: data,
     });
-
-    console.log(d);
-
-    if (d === "OK") {
+    if (data === "OK") {
       navigate("/success");
     } else {
       navigate("/failure");

@@ -5,16 +5,17 @@ import { useLogin } from "../../context/Login-context";
 export const Navbar = () => {
   const navigate = useNavigate();
 
-  const {token, loginDispatch} = useLogin();
+  const { token, loginDispatch } = useLogin();
 
   const handleLoginClick = () => {
     if (token === "OK") {
-      navigate('/auth/login');
+      loginDispatch({
+        type: 'Logout'
+      })
+    } else {
+      navigate("/auth/login");
     }
-    else{
-      navigate('/auth/login');
-    }
-  }
+  };
 
   const { state } = useCart();
 
@@ -45,14 +46,15 @@ export const Navbar = () => {
         </span>
         <span className="cart-badge">{totalQty}</span>
 
-        <div className="profile-wrapper">
-          <span onClick={handleLoginClick} className="material-symbols-outlined profile-icon cursor-pointer">
-            account_circle
-          </span>
+        <div onClick={handleLoginClick} className="profile-wrapper">
+          {token === "OK" ? (
+            <span className="material-symbols-outlined cursor-pointer">person_check</span>
+          ) : (
+            <span className="material-symbols-outlined profile-icon cursor-pointer">account_circle</span>
+          )}
+
           <span className="tooltip">
-            {
-              token === 'OK' ? 'Click here to Log Out' : 'Login'
-            }
+            {token === "OK" ? "Click here to Log Out" : "Login"}
           </span>
         </div>
       </nav>

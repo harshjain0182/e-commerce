@@ -20,7 +20,12 @@ export const LoginReducer = (state, {type, payload}) => {
             ...state,
             token: payload
         };
-
+        case 'Logout' : return{
+            ...state,
+            email: '',
+            password: '',
+            token: '',
+        }
         default: return state
     };
 };
