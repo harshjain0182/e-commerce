@@ -5,14 +5,14 @@ import { useLogin } from "../../context/Login-context";
 export const Navbar = () => {
   const navigate = useNavigate();
 
-  const {token} = useLogin();
+  const {token, loginDispatch} = useLogin();
 
   const handleLoginClick = () => {
     if (token === "OK") {
-      navigate('/success')
+      navigate('/auth/login');
     }
     else{
-      navigate('auth/login')
+      navigate('/auth/login');
     }
   }
 
@@ -51,7 +51,7 @@ export const Navbar = () => {
           </span>
           <span className="tooltip">
             {
-              token === 'OK' ? 'Log Out' : 'Login'
+              token === 'OK' ? 'Click here to Log Out' : 'Login'
             }
           </span>
         </div>
