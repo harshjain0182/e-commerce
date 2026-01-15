@@ -21,7 +21,7 @@ export const SuccessfullyLoggedIn = () => {
   return (
     <div>
       <span className="text-4xl">😊</span>
-      <h1 className="text-5xl">You are Successfully logged In</h1>
+      <h1 className="text-5xl">You are logged In</h1>
       <span>You will be redirected to Home page after {time}s....</span>
     </div>
   );

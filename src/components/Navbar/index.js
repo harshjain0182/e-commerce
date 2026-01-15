@@ -7,6 +7,15 @@ export const Navbar = () => {
 
   const {token} = useLogin();
 
+  const handleLoginClick = () => {
+    if (token === "OK") {
+      navigate('/success')
+    }
+    else{
+      navigate('auth/login')
+    }
+  }
+
   const { state } = useCart();
 
   const totalQty = state.cart.reduce((sum, item) => sum + item.qty, 0);
@@ -37,12 +46,12 @@ export const Navbar = () => {
         <span className="cart-badge">{totalQty}</span>
 
         <div className="profile-wrapper">
-          <span onClick={() => navigate('auth/login')} className="material-symbols-outlined profile-icon cursor-pointer">
+          <span onClick={handleLoginClick} className="material-symbols-outlined profile-icon cursor-pointer">
             account_circle
           </span>
           <span className="tooltip">
             {
-              token === 'ok' ? 'Log Out' : 'Login'
+              token === 'OK' ? 'Log Out' : 'Login'
             }
           </span>
         </div>
