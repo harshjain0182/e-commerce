@@ -65,7 +65,7 @@ export const CartProductCard = ({ product }) => {
           <p className="card-des">{product.title}</p>
 
           <p className="card-price">
-            ${product.price}
+            ₹{product.price}
             <span className="discount padding-all-8">
               (30% OFF)
             </span>

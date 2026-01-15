@@ -47,7 +47,7 @@ export const ProductCard = ({ product }) => {
                     <div className="card-title">{product.title}</div>
                     <div className="card-description">
                         <p className="card-price">
-                            ${product.price}
+                            ₹{product.price}
                             <span className="discount">(30% OFF)</span>
                         </p>
                     </div>

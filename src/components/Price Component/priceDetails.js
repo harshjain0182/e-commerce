@@ -15,27 +15,27 @@ export const TotalPayment= () => {
 
             <div className="flex text-sm font-medium text-gray-700 mb-2">
                 <p>Total Amount of cart</p>
-                <p className="ml-auto">${price}</p>
+                <p className="ml-auto">₹{price}</p>
             </div>
 
             <div className="flex text-sm font-medium text-gray-700 mb-2 border-b">
                 <p>Discount (30%) </p>
-                <p className="ml-auto">${discount}</p>
+                <p className="ml-auto">₹{discount}</p>
             </div>
 
             <div className="flex text-sm font-medium text-gray-700 mb-2">
                 <p>Price after Discount</p>
-                <p className="ml-auto">${finalPrice}</p>
+                <p className="ml-auto">₹{finalPrice}</p>
             </div>
 
             <div className="flex text-sm font-medium text-gray-700 mb-2 border-b">
                 <p>Delivery Charges</p>
-                <p className="ml-auto">$5</p>
+                <p className="ml-auto">₹5</p>
             </div>
 
             <div className="flex text-sm font-medium text-gray-700 mb-2">
                 <p>Total:</p>
-                <p className="ml-auto">${total}</p>
+                <p className="ml-auto">₹{total}</p>
             </div>
 
             <div>
