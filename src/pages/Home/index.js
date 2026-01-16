@@ -58,7 +58,7 @@ export const Home = () => {
           fixed left-0 top-[72px] z-40
           h-[calc(100vh-72px)] w-52
           bg-purple-500 text-white shadow-lg
-          transform transition-transform duration-300 ease-in-out
+          transform transition-transform duration-300 ease-in-out 
           ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
             >
@@ -101,7 +101,7 @@ export const Home = () => {
             <main
                 className={`
           min-h-screen bg-purple-200
-          transition-all duration-300 ease-in-out
+          transition-all duration-300 ease-in-out overflow-x-hidden
           ${isSidebarOpen ? "ml-52" : "ml-0"}
         `}
             >

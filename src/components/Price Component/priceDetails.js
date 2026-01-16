@@ -1,6 +1,8 @@
 import { useCart } from "../../context";
+import { useAddress } from "../../context/address-context";
 import { findCartValue } from "../../utils-function/findCartValue"
 import { priceAfterDiscount } from "../../utils-function/priceAfterDiscount";
+import { useNavigate } from "react-router-dom";
 
 export const TotalPayment= () => {
     
@@ -9,6 +11,19 @@ export const TotalPayment= () => {
     const price = findCartValue(state.cart);
     const {discount, finalPrice, total} = priceAfterDiscount(price);
 
+    const navigate = useNavigate();
+
+    const {addresses} = useAddress();
+    const onPlaceOrderClicks = () => {
+
+        if(addresses.length > 0){
+            navigate('/address');
+        }
+        else{
+            navigate('/newaddress');
+        }
+
+    }
     return(
         <div className="shrink-0 w-[400px] bg-white rounded-lg p-4 h-[270px] sticky top-40 z-100">
 
@@ -40,7 +55,7 @@ export const TotalPayment= () => {
             </div>
 
             <div>
-                <button className="btn-primary rounded-full px-8 py-3 text-white font-semibold hover:bg-purple-700 transition cursor-pointer w-[360px]">
+                <button className="btn-primary rounded-full px-8 py-3 text-white font-semibold hover:bg-purple-700 transition cursor-pointer w-[360px]" onClick={onPlaceOrderClicks}>
                     Place Order
                 </button>
             </div>

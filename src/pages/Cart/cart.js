@@ -12,7 +12,7 @@ export const Cart = () => {
     return (
         <>
             <Navbar />
-            <main className="flex justify-center pt-6 bg-purple-200 min-h-screen ">
+            <main className="flex justify-center pt-6 bg-purple-200 min-h-screen">
                 <div>
                     {
                         state.cart.length > 0 ? (

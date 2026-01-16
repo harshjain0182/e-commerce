@@ -6,7 +6,8 @@ import { Authorization } from './pages/Authorization';
 import { SuccessfullyLoggedIn } from './pages/login-success-or-not/loginSucces';
 import { NotSuccessfullyLoggedIn } from './pages/login-success-or-not/loginNotSuccessfull';
 import { ProtectedRoute } from './components/Protected-Route';
-
+import { AddressPage } from './pages/address-page/address-page';
+import { AddNewAddress } from './pages/add-new-address';
 function App() {
   return (
     <Routes>
@@ -27,6 +28,15 @@ function App() {
         </ProtectedRoute>
       }/>
       <Route path='/failure' element={<NotSuccessfullyLoggedIn/>}/>
+
+      <Route path='/address' element={
+          <AddressPage/>
+      }/>
+
+      <Route path='/newaddress' element={
+        <AddNewAddress/>
+      }/>
+
     </Routes>
   );
 }
