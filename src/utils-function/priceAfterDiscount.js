@@ -1,7 +1,7 @@
 export const priceAfterDiscount = (price) => {
 
     const discountRate = 0.30;
-    const deliveryCharge = 5;
+    const deliveryCharge = 60;
 
     const discount = price * discountRate;
     const discountdPrice = price - discount;

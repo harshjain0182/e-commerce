@@ -5,6 +5,7 @@ import { priceAfterDiscount } from "../../utils-function/priceAfterDiscount";
 export const TotalPayment= () => {
     
     const {state} = useCart();
+    const deliveryCharges = 60
     const price = findCartValue(state.cart);
     const {discount, finalPrice, total} = priceAfterDiscount(price);
 
@@ -30,7 +31,7 @@ export const TotalPayment= () => {
 
             <div className="flex text-sm font-medium text-gray-700 mb-2 border-b">
                 <p>Delivery Charges</p>
-                <p className="ml-auto">₹5</p>
+                <p className="ml-auto">₹{deliveryCharges}</p>
             </div>
 
             <div className="flex text-sm font-medium text-gray-700 mb-2">
@@ -39,7 +40,9 @@ export const TotalPayment= () => {
             </div>
 
             <div>
-                <button className="btn-primary rounded-full px-8 py-3 text-white font-semibold hover:bg-purple-700 transition cursor-pointer w-[360px]">Place Order</button>
+                <button className="btn-primary rounded-full px-8 py-3 text-white font-semibold hover:bg-purple-700 transition cursor-pointer w-[360px]">
+                    Place Order
+                </button>
             </div>
 
         </div>

@@ -1,5 +1,4 @@
 import { Login } from "../../components/login-form/login"
-import { Navbar } from "../../components/Navbar"
 
 export const Authorization = () =>{
     return(
