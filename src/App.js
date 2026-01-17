@@ -8,6 +8,7 @@ import { NotSuccessfullyLoggedIn } from './pages/login-success-or-not/loginNotSu
 import { ProtectedRoute } from './components/Protected-Route';
 import { AddressPage } from './pages/address-page/address-page';
 import { AddNewAddress } from './pages/add-new-address';
+import { AddressEdit } from './pages/edit-address/edit-address';
 function App() {
   return (
     <Routes>
@@ -35,6 +36,10 @@ function App() {
 
       <Route path='/newaddress' element={
         <AddNewAddress/>
+      }/>
+
+      <Route path='/editaddress/:id' element={
+        <AddressEdit/>
       }/>
 
     </Routes>

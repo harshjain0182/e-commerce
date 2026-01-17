@@ -3,15 +3,24 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export const AddressPage = () => {
-  const { addresses } = useAddress();
+  const { addresses, addressDispatch } = useAddress();
 
   const navigate = useNavigate();
-  const onDeleteClick = () => {};
+  
+  const onDeleteClick = (id) => {
+    addressDispatch({
+      type: "Remove_Address",
+      payload: id,
+    });
+  };
 
-  const onEditClick = () => {};
+  const onEditClick = (id) => {
+    navigate(`/editaddress/${id}`);
+  };
 
   const onAddNewAddressCLick = () => {
     navigate("/newaddress");
+    
   };
 
   const [selectedAddressId, setSelectedAddressId] = useState(null);
@@ -22,14 +31,17 @@ export const AddressPage = () => {
         <span
           className="material-symbols-outlined cursor-pointer text-purple-500"
           onClick={onAddNewAddressCLick}
-        > add
+        >
+          add
         </span>
-        <span className="cursor-pointer" onClick={onAddNewAddressCLick}>Add new Address</span>
+        <span className="cursor-pointer" onClick={onAddNewAddressCLick}>
+          Add new Address
+        </span>
       </div>
 
-      <div className="flex gap-1">
+      <div className="flex flex-col gap-1">
         {addresses.map((addr) => (
-          <label key={addr.id} className="flex items-start gap-2">
+          <label key={addr.id} className="flex items-start justify-between w-full  p-4 rounded">
             <input
               type="radio"
               name="address"
@@ -46,29 +58,28 @@ export const AddressPage = () => {
               <p>{addr.mob}</p>
               <p>{addr.pincode}</p>
             </div>
+            <div className="flex flex-col gap-3">
+              <span
+                className="material-symbols-outlined cursor-pointer"
+                onClick={() => onEditClick(addr.id)}
+              >
+                edit
+              </span>
+              <span
+                className="material-symbols-outlined cursor-pointer"
+                onClick={() => onDeleteClick(addr.id)}
+              >
+                delete
+              </span>
+            </div>
           </label>
         ))}
-
-        <div className="flex flex-col gap-3">
-          <span
-            className="material-symbols-outlined cursor-pointer"
-            onClick={onEditClick}
-          >
-            edit
-          </span>
-          <span
-            className="material-symbols-outlined cursor-pointer"
-            onClick={onDeleteClick}
-          >
-            delete
-          </span>
-        </div>
       </div>
 
       <div>
         <button
           className="button bg-purple-500 btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin"
-          onClick={onAddNewAddressCLick}
+          
         >
           Place Order
         </button>

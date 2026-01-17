@@ -29,7 +29,6 @@ export const NewAddress = () => {
       type: "Add_Address",
       payload: form
     });
-    console.log(addresses)
     navigate('/address')
   };
   
