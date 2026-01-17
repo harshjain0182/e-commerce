@@ -15,11 +15,12 @@ export const TotalPayment = () => {
   const { addresses } = useAddress();
   const onPlaceOrderClicks = () => {
     if (addresses.length > 0) {
-      navigate("/address");
+      navigate(`/address/${total}`);
     } else {
-      navigate("/newaddress");
+      navigate(`/newaddress/${total}`);
     }
   };
+
   return (
     <div className="shrink-0 w-[400px] bg-white rounded-lg p-4 h-[270px] sticky top-40 z-100">
       <p className="text-center text-lg font-bold mb-4 border-b">

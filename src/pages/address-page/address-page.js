@@ -2,6 +2,7 @@ import { useAddress } from "../../context/address-context";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Navbar } from "../../components/Navbar";
+import { useParams } from "react-router-dom";
 
 export const AddressPage = () => {
   const { addresses, addressDispatch } = useAddress();
@@ -24,6 +25,37 @@ export const AddressPage = () => {
   };
 
   const [selectedAddressId, setSelectedAddressId] = useState(null);
+
+  const {total} = useParams();
+  
+  const loadScript = (src) => {
+    return new Promise(resolve => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => resolve(true);
+      script.onError = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorpay = async () => {
+    await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+
+    const options = {
+      key: "rzp_test_S44gExxDqpCLIK",
+      amount: total * 100,
+      currency: "INR",
+      "name" : 'e-bazaar',
+      description: "Thank you for shopping with us.",
+
+      handler: ({payment_id}) => {
+        navigate("/")
+      }
+    }
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  }
 
   return (
     <div className="overflow-x-auto overflow-y-auto">
@@ -83,7 +115,7 @@ export const AddressPage = () => {
         </div>
 
         <div>
-          <button className="button bg-purple-500 btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin">
+          <button className="button bg-purple-500 btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin" onClick={displayRazorpay}>
             Place Order
           </button>
         </div>

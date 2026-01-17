@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAddress } from "../../context/address-context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const NewAddress = () => {
   const [form, setForm] = useState({
@@ -22,12 +22,13 @@ export const NewAddress = () => {
   const { addresses, addressDispatch } = useAddress();
   const navigate = useNavigate();
 
+  const {total} = useParams();
   const onSaveClick = () => {
     addressDispatch({
       type: "Add_Address",
       payload: form,
     });
-    navigate("/address");
+    navigate(`/address/${total}`);
   };
 
   return (

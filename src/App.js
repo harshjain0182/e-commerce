@@ -41,7 +41,7 @@ function App() {
       <Route path="/failure" element={<NotSuccessfullyLoggedIn />} />
 
       <Route
-        path="/address"
+        path="/address/:total"
         element={
           <ProtectedRoute>
             <AddressPage />
@@ -50,7 +50,7 @@ function App() {
       />
 
       <Route
-        path="/newaddress"
+        path="/newaddress/:total"
         element={
           <ProtectedRoute>
             <AddNewAddress />
