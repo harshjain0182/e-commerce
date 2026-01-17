@@ -3,35 +3,33 @@ import { useAddress } from "../../context/address-context";
 import { useNavigate } from "react-router-dom";
 
 export const NewAddress = () => {
-  
   const [form, setForm] = useState({
-    uname: '',
-    mainAdd: '',
-    landmark : '',
-    mob: '',
-    pincode: ''
+    uname: "",
+    mainAdd: "",
+    landmark: "",
+    mob: "",
+    pincode: "",
   });
 
   const onHandleChange = (e) => {
-    const {name, value} = e.target;
-    setForm(prev => 
-    ({
-        ...prev,
-        [name] : value
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
     }));
-  }
-  
-  const {addresses,addressDispatch} = useAddress();
+  };
+
+  const { addresses, addressDispatch } = useAddress();
   const navigate = useNavigate();
 
   const onSaveClick = () => {
     addressDispatch({
       type: "Add_Address",
-      payload: form
+      payload: form,
     });
-    navigate('/address')
+    navigate("/address");
   };
-  
+
   return (
     <div className="flex flex-col gap-4 w-[350px] bg-white p-6 rounded-lg shadow-lg">
       <input

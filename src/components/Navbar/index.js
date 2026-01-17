@@ -10,8 +10,8 @@ export const Navbar = () => {
   const handleLoginClick = () => {
     if (token === "OK") {
       loginDispatch({
-        type: 'Logout'
-      })
+        type: "Logout",
+      });
     } else {
       navigate("/auth/login");
     }
@@ -48,9 +48,13 @@ export const Navbar = () => {
 
         <div onClick={handleLoginClick} className="profile-wrapper">
           {token === "OK" ? (
-            <span className="material-symbols-outlined cursor-pointer">person_check</span>
+            <span className="material-symbols-outlined cursor-pointer">
+              person_check
+            </span>
           ) : (
-            <span className="material-symbols-outlined profile-icon cursor-pointer">account_circle</span>
+            <span className="material-symbols-outlined profile-icon cursor-pointer">
+              account_circle
+            </span>
           )}
 
           <span className="tooltip">

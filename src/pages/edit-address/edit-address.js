@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAddress } from "../../context/address-context";
+import { Navbar } from "../../components/Navbar";
 
 export const AddressEdit = () => {
   const [form, setForm] = useState({
@@ -41,71 +42,74 @@ export const AddressEdit = () => {
 
   const onSaveClick = () => {
     addressDispatch({
-      type: 'Edit_Address',
+      type: "Edit_Address",
       payload: {
         id,
-        ...form
-      }
+        ...form,
+      },
     });
-    navigate('/address');
+    navigate("/address");
   };
 
   return (
-    <div className="min-h-screen bg-zinc-300 flex flex-col justify-center items-center">
-      <div className="flex flex-col gap-4 w-[350px] bg-white p-6 rounded-lg shadow-lg">
-        <input
-          className="outline-none p-2 "
-          type="text"
-          maxLength={20}
-          placeholder="Enter Name"
-          name="uname"
-          value={form.uname}
-          onChange={onHandleChange}
-        />
-        <input
-          className="outline-none p-2 "
-          type="text"
-          maxLength={50}
-          placeholder="Enter main Address"
-          name="mainAdd"
-          value={form.mainAdd}
-          onChange={onHandleChange}
-        />
-        <input
-          className="outline-none p-2 "
-          type="text"
-          maxLength={25}
-          placeholder="landmark"
-          name="landmark"
-          value={form.landmark}
-          onChange={onHandleChange}
-        />
-        <input
-          className="outline-none p-2 "
-          type="text"
-          maxLength={10}
-          placeholder="Mob. No"
-          name="mob"
-          value={form.mob}
-          onChange={onHandleChange}
-        />
-        <input
-          className="outline-none p-2 "
-          type="text"
-          inputMode="numeric"
-          maxLength={6}
-          placeholder="PINCODE"
-          name="pincode"
-          value={form.pincode}
-          onChange={onHandleChange}
-        />
-        <button
-          className="button bg-purple-500 btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin"
-          onClick={onSaveClick}
-        >
-          Save Address
-        </button>
-      </div>
+    <div className="overflow-x-auto overflow-y-auto">
+      <Navbar />
+      <main className="min-h-screen bg-zinc-300 flex flex-col justify-center items-center overflow-x-auto">
+        <div className="flex flex-col gap-4 w-[350px] bg-white p-6 rounded-lg shadow-lg">
+          <input
+            className="outline-none p-2 "
+            type="text"
+            maxLength={20}
+            placeholder="Enter Name"
+            name="uname"
+            value={form.uname}
+            onChange={onHandleChange}
+          />
+          <input
+            className="outline-none p-2 "
+            type="text"
+            maxLength={50}
+            placeholder="Enter main Address"
+            name="mainAdd"
+            value={form.mainAdd}
+            onChange={onHandleChange}
+          />
+          <input
+            className="outline-none p-2 "
+            type="text"
+            maxLength={25}
+            placeholder="landmark"
+            name="landmark"
+            value={form.landmark}
+            onChange={onHandleChange}
+          />
+          <input
+            className="outline-none p-2 "
+            type="text"
+            maxLength={10}
+            placeholder="Mob. No"
+            name="mob"
+            value={form.mob}
+            onChange={onHandleChange}
+          />
+          <input
+            className="outline-none p-2 "
+            type="text"
+            inputMode="numeric"
+            maxLength={6}
+            placeholder="PINCODE"
+            name="pincode"
+            value={form.pincode}
+            onChange={onHandleChange}
+          />
+          <button
+            className="button bg-purple-500 btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin"
+            onClick={onSaveClick}
+          >
+            Save Address
+          </button>
+        </div>
+      </main>
     </div>
   );
 };
