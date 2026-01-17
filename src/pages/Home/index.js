@@ -49,7 +49,7 @@ export const Home = () => {
     }
 
     return (
-        <>
+        <div className="overflow-x-auto overflow-y-auto">
             <Navbar />
 
             {/* SIDEBAR */}
@@ -151,6 +151,6 @@ export const Home = () => {
                     ))}
                 </div>
             </main>
-        </>
+        </div>
     );
 };

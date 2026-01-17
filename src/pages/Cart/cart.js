@@ -10,7 +10,7 @@ export const Cart = () => {
     const { state } = useCart();
 
     return (
-        <>
+        <div className="overflow-x-auto overflow-y-auto">
             <Navbar />
             <main className="flex justify-center pt-6 bg-purple-200 min-h-screen">
                 <div>
@@ -45,6 +45,6 @@ export const Cart = () => {
                 </div>
 
             </main>
-        </>
+        </div>
     );
 }
