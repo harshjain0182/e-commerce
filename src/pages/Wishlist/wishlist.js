@@ -9,7 +9,7 @@ export const WishList = () => {
     const { state } = useCart();
 
     return (
-        <div className="overflow-x-auto overflow-y-auto">
+        <div>
             <Navbar/>
             <div className="bg-purple-200 min-h-screen p-6">
 

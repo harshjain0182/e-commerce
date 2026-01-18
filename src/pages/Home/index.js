@@ -49,7 +49,7 @@ export const Home = () => {
     }
 
     return (
-        <div className="overflow-x-auto overflow-y-auto">
+        <div>
             <Navbar />
 
             {/* SIDEBAR */}

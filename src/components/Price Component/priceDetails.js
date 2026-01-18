@@ -22,7 +22,7 @@ export const TotalPayment = () => {
   };
 
   return (
-    <div className="shrink-0 w-[400px] bg-white rounded-lg p-4 h-[270px] sticky top-40 z-100">
+    <div className="shrink-0 w-[400px] bg-white rounded-lg p-4 h-[270px] sticky top-40 z-100 ">
       <p className="text-center text-lg font-bold mb-4 border-b">
         Price Details
       </p>

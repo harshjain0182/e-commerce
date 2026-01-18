@@ -59,7 +59,7 @@ function App() {
       />
 
       <Route
-        path="/editaddress/:id"
+        path="/editaddress/:id/:total"
         element={
           <ProtectedRoute>
             <AddressEdit />

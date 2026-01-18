@@ -14,7 +14,7 @@ export const AddressEdit = () => {
   });
 
   const { addresses, addressDispatch } = useAddress();
-  const { id } = useParams();
+  const { id, total } = useParams();
 
   const addressToEdit = addresses.find((addr) => addr.id === id);
 
@@ -48,11 +48,11 @@ export const AddressEdit = () => {
         ...form,
       },
     });
-    navigate("/address");
+    navigate(`/address/${total}`);
   };
 
   return (
-    <div className="overflow-x-auto overflow-y-auto">
+    <div className="overflow-x-hidden">
       <Navbar />
       <main className="min-h-screen bg-zinc-300 flex flex-col justify-center items-center overflow-x-auto">
         <div className="flex flex-col gap-4 w-[350px] bg-white p-6 rounded-lg shadow-lg">

@@ -16,17 +16,17 @@ export const AddressPage = () => {
     });
   };
 
+  const {total} = useParams();
+
   const onEditClick = (id) => {
-    navigate(`/editaddress/${id}`);
+    navigate(`/editaddress/${id}/${total}`);
   };
 
   const onAddNewAddressCLick = () => {
-    navigate("/newaddress");
+    navigate("/newaddress/" + total);
   };
 
   const [selectedAddressId, setSelectedAddressId] = useState(null);
-
-  const {total} = useParams();
   
   const loadScript = (src) => {
     return new Promise(resolve => {
@@ -58,7 +58,7 @@ export const AddressPage = () => {
   }
 
   return (
-    <div className="overflow-x-auto overflow-y-auto">
+    <div className="sticky top-0 z-50">
       <Navbar />
 
       <main className="min-h-screen bg-zinc-300 flex flex-col justify-center items-center gap-4 overflow-x-auto overflow-y-auto">

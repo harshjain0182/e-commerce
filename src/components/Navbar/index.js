@@ -58,7 +58,7 @@ export const Navbar = () => {
           )}
 
           <span className="tooltip">
-            {token === "OK" ? "Click here to Log Out" : "Login"}
+            {token === "OK" ? "Log Out" : "Login"}
           </span>
         </div>
       </nav>
