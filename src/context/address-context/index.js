@@ -1,17 +1,26 @@
 import { addressReducer, initialState } from "../../address-reducer";
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 const AddressContext = createContext();
 
 const AddressProvider = ({ children }) => {
-    const [{addresses, currAddress}, addressDispatch] = useReducer(addressReducer, initialState);
+  const [{ addresses }, addressDispatch] = useReducer(
+    addressReducer,
+    initialState,
+  );
 
-    return(
-        <AddressContext.Provider value={{addresses, currAddress, addressDispatch}}>
-            {children}
-        </AddressContext.Provider>
-    );
-}
+  useEffect(() => {
+    localStorage.setItem("address", JSON.stringify(addresses));
+  }, [addresses]);
+
+  return (
+    <AddressContext.Provider
+      value={{ addresses, addressDispatch }}
+    >
+      {children}
+    </AddressContext.Provider>
+  );
+};
 
 const useAddress = () => useContext(AddressContext);
-export {useAddress, AddressProvider};
+export { useAddress, AddressProvider };

@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 
 export const initialState = {
-    addresses: [],
+    addresses: JSON.parse(localStorage.getItem("address") || '[]'),
 }
 
 export const addressReducer = (state, {type, payload}) => {
