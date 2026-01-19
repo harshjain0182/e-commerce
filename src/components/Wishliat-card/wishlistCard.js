@@ -1,15 +1,17 @@
 import { findProducts } from "../../utils-function";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context";
+import { useWishlist } from "../../context/wishlistcontext/wishlistcontext";
 
 export const WishlistProductCard = ({ product }) => {
 
   const navigate = useNavigate()
 
   const { cartDispatch, state } = useCart();
+  const { wishListState, wishlistDispatch} = useWishlist()
 
   const onRemoveClick = (id) => {
-    cartDispatch({
+    wishlistDispatch({
       type: 'remove_from_wishlist',
       payload: id
     })
@@ -24,7 +26,7 @@ export const WishlistProductCard = ({ product }) => {
       payload: product
     });
 
-    cartDispatch({
+    wishlistDispatch({
       type: 'remove_from_wishlist',
       payload: product.id
     })

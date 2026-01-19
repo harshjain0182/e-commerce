@@ -2,10 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context"
 import { findProducts } from "../../utils-function";
 import { findProductsInWl } from "../../utils-function/findProductinWl";
+import { useWishlist } from "../../context/wishlistcontext/wishlistcontext";
 
 export const ProductCard = ({ product }) => {
 
     const { state, cartDispatch } = useCart();
+    const {wishListState, wishlistDispatch} = useWishlist();
 
     const navigate = useNavigate()
 
@@ -23,14 +25,14 @@ export const ProductCard = ({ product }) => {
         }
     }
 
-    const isProductInWishlist = findProductsInWl(state.wishList, product.id);
+    const isProductInWishlist = findProductsInWl(wishListState.wishList, product.id);
     
     const onAddToWishlistClick = () => {
         if (isProductInWishlist) {
             navigate('/wishlist');
         }
         else {
-            cartDispatch({
+            wishlistDispatch({
                 type: "add_to_wishlist",
                 payload: product
             })

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context";
 import { useLogin } from "../../context/Login-context";
+import { useWishlist } from "../../context/wishlistcontext/wishlistcontext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -18,7 +19,8 @@ export const Navbar = () => {
   };
 
   const { state } = useCart();
-
+  const {wishListState} = useWishlist();
+  
   const totalQty = state.cart.reduce((sum, item) => sum + item.qty, 0);
 
   return (
@@ -36,7 +38,7 @@ export const Navbar = () => {
         >
           favorite
         </span>
-        <span className="wishlist-badge">{state.wishList.length}</span>
+        <span className="wishlist-badge">{wishListState.wishList.length}</span>
 
         <span
           onClick={() => navigate("/Cart")}

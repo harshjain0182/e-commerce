@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../context";
 import { WishlistProductCard } from "../../components/Wishliat-card/wishlistCard";
 import { Navbar } from "../../components/Navbar";
+import { useWishlist } from "../../context/wishlistcontext/wishlistcontext";
 
 export const WishList = () => {
 
     const navigate = useNavigate();
-    const { state } = useCart();
+    const { wishListState } = useWishlist();
 
     return (
         <div>
@@ -17,11 +17,11 @@ export const WishList = () => {
                 <main className="flex justify-center pt-6 ">
                     <div>
                         {
-                            state.wishList.length > 0 ? (
+                            wishListState.wishList.length > 0 ? (
                                 <div className="flex w-full max-w-6xl gap-6">
 
                                     <div className="flex flex-col gap-4">
-                                        {state.wishList.map(product => (
+                                        {wishListState.wishList.map(product => (
                                             <WishlistProductCard
                                                 key={product.id}
                                                 product={product}

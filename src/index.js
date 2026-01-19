@@ -7,20 +7,23 @@ import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from "./context";
 import { LoginProvider } from "./context/Login-context";
 import { AddressProvider } from "./context/address-context";
+import { WishlistProvider } from "./context/wishlistcontext/wishlistcontext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <CartProvider>
-    <BrowserRouter>
-      <React.StrictMode>
-        <LoginProvider>
-          <AddressProvider>
-            <App />
-          </AddressProvider>
-        </LoginProvider>
-      </React.StrictMode>
-    </BrowserRouter>
-  </CartProvider>
+    <WishlistProvider>
+      <BrowserRouter>
+        <React.StrictMode>
+          <LoginProvider>
+            <AddressProvider>
+              <App />
+            </AddressProvider>
+          </LoginProvider>
+        </React.StrictMode>
+      </BrowserRouter>
+    </WishlistProvider>
+  </CartProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function
