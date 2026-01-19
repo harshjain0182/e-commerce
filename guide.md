@@ -3,3 +3,4 @@ Developed a responsive e-commerce web application using the react-shop-backend-s
 
 ### todo: comands for installing packages used here(in terminal): 
 `npm i axios, tailwindcss@3, react-router-dom`
+`Project completion`
