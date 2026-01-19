@@ -5,7 +5,9 @@ import { priceAfterDiscount } from "../../utils-function/priceAfterDiscount";
 import { useNavigate } from "react-router-dom";
 
 export const TotalPayment = () => {
+
   const { state } = useCart();
+  
   const deliveryCharges = 60;
   const price = findCartValue(state.cart);
   const { discount, finalPrice, total } = priceAfterDiscount(price);
@@ -13,6 +15,7 @@ export const TotalPayment = () => {
   const navigate = useNavigate();
 
   const { addresses } = useAddress();
+
   const onPlaceOrderClicks = () => {
     if (addresses.length > 0) {
       navigate(`/address/${total}`);

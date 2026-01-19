@@ -1,7 +1,7 @@
 
 export const initialState = {
-    cart: [],
-    wishList: []
+    cart: JSON.parse(localStorage.getItem("cart") || '[]'),
+    wishList: JSON.parse(localStorage.getItem("cart") || '[]'),
 }
 
 export const cartReducer = (state, action) => {
@@ -42,6 +42,11 @@ export const cartReducer = (state, action) => {
 
             wishList : state.wishList.filter(p => p.id !== action.payload),
         };
+
+        case 'clear_cart' : return{
+            ...state,
+            cart: [],
+        }
 
         default: return state;
     }

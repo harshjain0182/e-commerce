@@ -1,7 +1,7 @@
 export const initialState = {
     email : '',
     password: '',
-    token: ''
+    token: localStorage.getItem("token") || ''
 };
 
 export const LoginReducer = (state, {type, payload}) => {

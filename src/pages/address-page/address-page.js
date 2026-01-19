@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { useParams } from "react-router-dom";
+import { useCart } from "../../context";
 
 export const AddressPage = () => {
+  const { state, cartDispatch } = useCart();
+
   const { addresses, addressDispatch } = useAddress();
 
   const navigate = useNavigate();
@@ -16,7 +19,8 @@ export const AddressPage = () => {
     });
   };
 
-  const {total} = useParams();
+  const { total } = useParams();
+  const amount = Number(total);
 
   const onEditClick = (id) => {
     navigate(`/editaddress/${id}/${total}`);
@@ -27,9 +31,9 @@ export const AddressPage = () => {
   };
 
   const [selectedAddressId, setSelectedAddressId] = useState(null);
-  
+
   const loadScript = (src) => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const script = document.createElement("script");
       script.src = src;
       script.onload = () => resolve(true);
@@ -43,19 +47,22 @@ export const AddressPage = () => {
 
     const options = {
       key: "rzp_test_S44gExxDqpCLIK",
-      amount: total * 100,
+      amount: amount * 100,
       currency: "INR",
-      "name" : 'e-bazaar',
+      name: "e-bazaar",
       description: "Thank you for shopping with us.",
 
-      handler: ({payment_id}) => {
-        navigate("/")
-      }
-    }
+      handler: ({ payment_id }) => {
+
+        cartDispatch({ type: "clear_cart" });
+
+        navigate("/");
+      },
+    };
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
-  }
+  };
 
   return (
     <div className="sticky top-0 z-50">
@@ -113,12 +120,18 @@ export const AddressPage = () => {
             </label>
           ))}
         </div>
-
-        <div>
-          <button className="button bg-purple-500 btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin" onClick={displayRazorpay}>
-            Place Order
-          </button>
-        </div>
+        {selectedAddressId !== null && state.cart.length > 0 ? (
+          <div>
+            <button
+              className="button bg-purple-500 btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin"
+              onClick={displayRazorpay}
+            >
+              Place Order
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </main>
     </div>
   );

@@ -8,6 +8,7 @@ export const Cart = () => {
 
     const navigate = useNavigate();
     const { state } = useCart();
+    
 
     return (
         <div>
