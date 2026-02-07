@@ -41,14 +41,19 @@ export const AddressEdit = () => {
   const navigate = useNavigate();
 
   const onSaveClick = () => {
-    addressDispatch({
-      type: "Edit_Address",
-      payload: {
+    if (form.mainAdd === "" || form.mob === "" || form.pincode === ""){
+      alert("Enter valid address");
+    }
+    else {
+      addressDispatch({
+        type: "Edit_Address",
+        payload: {
         id,
         ...form,
       },
-    });
-    navigate(`/address/${total}`);
+      });
+      navigate(`/address/${total}`);
+    }
   };
 
   return (

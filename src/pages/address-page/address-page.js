@@ -17,6 +17,10 @@ export const AddressPage = () => {
       type: "Remove_Address",
       payload: id,
     });
+
+    if (selectedAddressId === id) {
+    setSelectedAddressId(null);
+  }
   };
 
   const { total } = useParams();
@@ -120,7 +124,7 @@ export const AddressPage = () => {
             </label>
           ))}
         </div>
-        {selectedAddressId !== null && state.cart.length > 0 ? (
+        {selectedAddressId !== null && state.cart.length > 0 && addresses.length > 0 ? (
           <div>
             <button
               className="button bg-purple-500 btn-icon cart-btn d-flex align-center justify-center gap cursor btn-margin"

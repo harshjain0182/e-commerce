@@ -22,13 +22,18 @@ export const NewAddress = () => {
   const { addresses, addressDispatch } = useAddress();
   const navigate = useNavigate();
 
-  const {total} = useParams();
+  const { total } = useParams();
   const onSaveClick = () => {
-    addressDispatch({
-      type: "Add_Address",
-      payload: form,
-    });
-    navigate(`/address/${total}`);
+    if (form.mainAdd === "" || form.mob === "" || form.pincode === ""){
+      alert("Enter valid address");
+    }
+    else {
+      addressDispatch({
+        type: "Add_Address",
+        payload: form,
+      });
+      navigate(`/address/${total}`);
+    }
   };
 
   return (
