@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useCart } from "../../context";
 import { useAddress } from "../../context/address-context";
 import { findCartValue } from "../../utils-function/findCartValue";
@@ -5,12 +6,19 @@ import { priceAfterDiscount } from "../../utils-function/priceAfterDiscount";
 import { useNavigate } from "react-router-dom";
 
 export const TotalPayment = () => {
+  const { state, cartDispatch } = useCart();
 
-  const { state } = useCart();
-  
   const deliveryCharges = 60;
   const price = findCartValue(state.cart);
   const { discount, finalPrice, total } = priceAfterDiscount(price);
+
+  useEffect(() => {
+    
+    cartDispatch({
+      type: "updated_total",
+      payload: total,
+    });
+  }, [total, cartDispatch]);
 
   const navigate = useNavigate();
 
@@ -18,9 +26,9 @@ export const TotalPayment = () => {
 
   const onPlaceOrderClicks = () => {
     if (addresses.length > 0) {
-      navigate(`/address/${total}`);
+      navigate(`/address`);
     } else {
-      navigate(`/newaddress/${total}`);
+      navigate(`/newaddress`);
     }
   };
 

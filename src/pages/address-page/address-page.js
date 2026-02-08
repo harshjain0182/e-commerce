@@ -2,7 +2,6 @@ import { useAddress } from "../../context/address-context";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Navbar } from "../../components/Navbar";
-import { useParams } from "react-router-dom";
 import { useCart } from "../../context";
 
 export const AddressPage = () => {
@@ -22,16 +21,14 @@ export const AddressPage = () => {
     setSelectedAddressId(null);
   }
   };
-
-  const { total } = useParams();
-  const amount = Number(total);
+  const amount = Number(state.grandTotal);
 
   const onEditClick = (id) => {
-    navigate(`/editaddress/${id}/${total}`);
+    navigate(`/editaddress/${id}`);
   };
 
   const onAddNewAddressCLick = () => {
-    navigate("/newaddress/" + total);
+    navigate("/newaddress");
   };
 
   const [selectedAddressId, setSelectedAddressId] = useState(null);

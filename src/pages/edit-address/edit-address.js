@@ -14,7 +14,7 @@ export const AddressEdit = () => {
   });
 
   const { addresses, addressDispatch } = useAddress();
-  const { id, total } = useParams();
+  const { id } = useParams();
 
   const addressToEdit = addresses.find((addr) => addr.id === id);
 
@@ -52,7 +52,7 @@ export const AddressEdit = () => {
         ...form,
       },
       });
-      navigate(`/address/${total}`);
+      navigate(`/address`);
     }
   };
 

@@ -1,6 +1,7 @@
 
 export const initialState = {
     cart: JSON.parse(localStorage.getItem("cart") || '[]'),
+    grandTotal: ""
 }
 
 export const cartReducer = (state, action) => {
@@ -34,6 +35,11 @@ export const cartReducer = (state, action) => {
         case 'clear_cart' : return{
             ...state,
             cart: [],
+        }
+
+        case 'updated_total': return{
+            ...state,
+            grandTotal: action.payload
         }
 
         default: return state;

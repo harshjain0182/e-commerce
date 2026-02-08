@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAddress } from "../../context/address-context";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const NewAddress = () => {
   const [form, setForm] = useState({
@@ -19,10 +19,9 @@ export const NewAddress = () => {
     }));
   };
 
-  const { addresses, addressDispatch } = useAddress();
+  const { addressDispatch } = useAddress();
   const navigate = useNavigate();
 
-  const { total } = useParams();
   const onSaveClick = () => {
     if (form.mainAdd === "" || form.mob === "" || form.pincode === ""){
       alert("Enter valid address");
@@ -32,7 +31,7 @@ export const NewAddress = () => {
         type: "Add_Address",
         payload: form,
       });
-      navigate(`/address/${total}`);
+      navigate(`/address`);
     }
   };
 
